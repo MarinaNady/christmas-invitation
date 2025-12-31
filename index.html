@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Party Invitation 🎄</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: white;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 350px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin: 15px 0;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #e63946;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    img {
+        width: 280px;          /* Bigger size */
+        height: 280px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px 0;
+        border: 4px solid white;
+
+        /* Animation */
+        animation: popIn 0.8s ease-out forwards;
+
+        box-shadow: 0 0 20px rgba(255,255,255,0.6);
+    }
+
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes popIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.6);
+        }
+        60% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Input Screen -->
+  <div class="card" id="inputCard">
+    <h1>🎄 Christmas Party</h1>
+    <p>Please enter your name</p>
+    <input type="text" id="nameInput" placeholder="Your first name">
+    <button onclick="showInvitation()">Continue</button>
+  </div>
+
+  <!-- Invitation Screen -->
+  <div class="card hidden" id="inviteCard">
+    <h1 id="guestName"></h1>
+    <img id="guestPhoto" alt="Guest Photo">
+    <p>You are invited to our office Christmas Party 🎉</p>
+    <p>📍 Office Hall</p>
+    <p>🕕 Jan 4 – 6:00 PM</p>
+    <p>🕕 Dress Code: Christmas patterns</p>
+  </div>
+
+  <script>
+    // Name → Photo mapping
+    const guests = {
+      "dina": "dina.png",
+      "abkarino": "abkarino.png",
+      "abbas": "abbas.png",
+      "hannah": "hannah.png",
+      "bothaina": "bothaina.png",
+      "mariam": "mariam.png",
+      "rehab": "rehab.png",
+      "karen": "karen.png",
+      "ismail": "ismail.png",
+      "tarneem": "tarneem.png",
+      "mohayira": "mohayira.png",
+      "menna": "menna.png",
+      "gasser": "gasser.png",
+      "youssef": "youssef.png",
+      "ganzoury": "ganzoury.png",
+      "mahmoud": "mahmoud.png",
+      "aya": "aya.png",
+      "farida": "farida.png",
+      "assem": "assem.png",
+      "ahmed": "ahmed.png",
+    //   "marina": "marina.jpg"
+    };
+
+    function showInvitation() {
+  let nameInput = document.getElementById("nameInput").value;
+
+  // Normalize input
+  nameInput = nameInput
+    .trim()
+    .toLowerCase()
+    .split(" ")[0]; // take first name only
+
+  console.log("Entered name:", nameInput); // debug
+
+  if (!guests.hasOwnProperty(nameInput)) {
+    alert("Name not found. Please enter your first name.");
+    return;
+  }
+
+  document.getElementById("inputCard").classList.add("hidden");
+  document.getElementById("inviteCard").classList.remove("hidden");
+
+  document.getElementById("guestName").innerText =
+    `🎄 Welcome ${capitalize(nameInput)}!`;
+
+//   document.getElementById("guestPhoto").src =
+//     `images/${guests[nameInput]}`;
+
+    document.getElementById("guestPhoto").src = `images/${guests[nameInput]}`;
+
+}
+
+    function capitalize(name) {
+      return name.charAt(0).toUpperCase() + name.slice(1);
+    }
+  </script>
+
+</body>
+</html>
